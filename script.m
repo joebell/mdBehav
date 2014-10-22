@@ -50,13 +50,13 @@
 % [perGateMeas, measIX] = calcMaxFcnOnGate(tA, tAIX, gIX, stSamp, enSamp, calcFcn);
 % [meanMetrics, meanIX] = stratifyByFly(perGateMeas, measIX, tAIX);
 
-timeStart = 90;
-gatePosition = [0 30];
-upLaser = false;
-[gIX, stSamp] = gateFlashEncounterByDirection(tA, tAIX, timeStart, gatePosition, upLaser);
-plotWindow = [-2 2];
-calcFcn = @fcnTurn;
-plotOnGate( tA, tAIX, gIX, stSamp, plotWindow, calcFcn);
+% timeStart = 90;
+% gatePosition = [0 30];
+% upLaser = false;
+% [gIX, stSamp] = gateFlashEncounterByDirection(tA, tAIX, timeStart, gatePosition, upLaser);
+% plotWindow = [-2 2];
+% calcFcn = @fcnTurn;
+% plotOnGate( tA, tAIX, gIX, stSamp, plotWindow, calcFcn);
 
 % [meanMetrics, meanIX] = stratifyByFly(perGateMeas, measIX, tAIX);
 % plotMeanMetrics(meanMetrics, meanIX, 'b'); hold on;

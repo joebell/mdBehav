@@ -1,0 +1,43 @@
+function pOut = testSameMetricCurve(grandMetrics, grandIX, useGeno1, useGeno2, useMetric)
+
+%     useMetric = 2;
+%     useGeno1 = 55;
+%     useGeno2 =  9;
+    
+    ix     = find(grandIX(:,3) == useGeno1);
+    resp1  = grandMetrics(ix, useMetric);
+    power1 = grandIX(ix,1);
+    fly1   = grandIX(ix,2);
+    geno1  = 1*ones(length(fly1),1);
+    
+    ix     = find(grandIX(:,3) == useGeno2);
+    resp2  = grandMetrics(ix, useMetric);
+    power2 = grandIX(ix,1);
+    fly2   = grandIX(ix,2) + max(fly1);
+    geno2  = 2*ones(length(fly2),1);
+    
+    resp = [resp1(:);resp2(:)];
+    group = {[power1(:);power2(:)],...
+             [fly1(:);fly2(:)],...
+             [geno1(:);geno2(:)]};
+    
+    nestingMatrix = [0, 0, 0;...
+                     0, 0, 1;...
+                     0, 0, 0];
+    modelTerms = [1, 0, 0;...
+                  0, 1, 0;...
+                  0, 0, 1;...
+                  1, 0, 1];
+         
+    [p,table,stats,terms] = anovan(resp,group,...
+                                   'continuous',[],...
+                                   'display','off',...
+                                   'model',modelTerms,...
+                                   'nested',nestingMatrix,...
+                                   'random',[2],...
+                                   'varnames',{'Power','Fly','Genotype'});
+                               
+    pOut = p;
+    
+    
+    

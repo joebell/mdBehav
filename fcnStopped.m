@@ -1,5 +1,5 @@
 %%
-% Calculates whether fly is backing up
+% Calculates whether fly is stopped
 %
 function out = fcnStopped( tA, tAIX)
 

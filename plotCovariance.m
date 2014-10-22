@@ -1,4 +1,4 @@
-function coeff = plotCovariance(grandMetrics, grandIX, metricLabels)
+function [coeff,coeff2] = plotCovariance(grandMetrics, grandIX, metricLabels)
 
     ix = find(isnan(grandMetrics));
     grandMetrics(ix) = 0;

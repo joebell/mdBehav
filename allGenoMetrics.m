@@ -3,7 +3,7 @@ function allGenoMetrics()
     grandMetrics = [];
     grandIX = [];
 
-    genoList = [1:76];
+    genoList = [1:78];
    
 	allArgs = {};	
     for genoNn = 1:length(genoList)
@@ -12,6 +12,8 @@ function allGenoMetrics()
 		allArgs{genoNn} = {genoN}; 
     end
 
-	batchSubmit(@calcAllMetrics,allArgs);
+	trackJob = batchSubmit(@totalTracks, allArgs);
+	dependency = ['-w "done("',trackJob,'*")"'];
+	batchSubmit(@calcAllMetrics,allArgs,dependency);
 
     

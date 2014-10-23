@@ -14,7 +14,7 @@ function MI = crossValMI(metric1, metric2, grandIX, nBins, nSplits)
         for genoNn = 1:length(genoList)
             genoN = genoList(genoNn);
             
-            ix = find(grandIX(:,3) == genoN);
+            ix = find(grandIX(:,3) == genoN); 
             flyList = unique(grandIX(ix,2));
             randOrder = randperm(length(flyList));
             flys1 = flyList(randOrder(1:(length(flyList)/2)));
@@ -39,7 +39,7 @@ function MI = crossValMI(metric1, metric2, grandIX, nBins, nSplits)
             end            
         end
                
-        MIs(end+1) = mutualInfo(list1,list2, nBins);
+        MIs(end+1) = contMutualInfo(list1,list2, nBins);
         
     end
             

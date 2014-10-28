@@ -25,7 +25,7 @@ function MIplot(grandMetrics, grandIX, MI, metricLabels)
         genoN = genoList(genoNn);
         
         ix = find(genoIX(:,3) == genoN);
-        meanPI(genoNn) = mean(genoMetrics(ix,1));
+        meanPI(genoNn) = mean(genoMetrics(ix,2));
     end
     [A,genoOrder] = sort(meanPI,'descend');
     
@@ -38,6 +38,7 @@ function MIplot(grandMetrics, grandIX, MI, metricLabels)
         ffsubplot(4,5,metricNnn)
         
         gpArray = pullGenoPower(Z,genoIX,metricN);
+        %[A,genoOrder] = sort(mean(gpArray,2),'descend');
         image(gpArray(genoOrder,:),'CDataMapping','scaled');
         title(['#',num2str(metricNn),': ',metricLabels{metricN}]);
         caxis([-3,3]);  
@@ -54,6 +55,7 @@ function MIplot(grandMetrics, grandIX, MI, metricLabels)
         ffsubplot(4,5,metricNnn)
         
         gpArray = pullGenoPower(Z,genoIX,metricN);
+        %[A,genoOrder] = sort(mean(gpArray,2),'descend');
         image(gpArray(genoOrder,:),'CDataMapping','scaled');
         title(['#',num2str(metricNn),': ',metricLabels{metricN}]);
         caxis([-3,3]);   

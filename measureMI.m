@@ -1,14 +1,18 @@
 function MI = measureMI(grandMetrics, grandIX, nBins)
 
-	powerN = grandIX(:,1);
-	genoN = grandIX(:,3);
-    genoList = unique(genoN);
-    powerList = unique(powerN);
+    ix = find(isnan(grandMetrics));
+    grandMetrics(ix) = 0;
 
-	for metricN = 1:size(grandMetrics,2)
-
-		metricN
-		metric = grandMetrics(:,metricN);
-		MI(metricN) = mutualInfo(metric, genoN, nBins);
-
+	for metricN1 = 1:size(grandMetrics,2)
+        metricN1
+        for metricN2 = metricN1:size(grandMetrics,2)
+            metricN2
+            nBins = 1024; nSplits = 1;
+            oneMI = crossValCondMutualInfo(grandMetrics(:,metricN1),...
+                                           grandMetrics(:,metricN2),...
+                                           grandIX, nBins,  nSplits)
+            MI(metricN1,metricN2) = oneMI;
+            MI(metricN2,metricN1) = oneMI;
+            
+        end
     end

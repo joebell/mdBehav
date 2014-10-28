@@ -1,18 +1,14 @@
-function I = condMutualInfo(X, Y, Z, nBins)
+function I = condContMutualInfo(X, Y, Z, nBins)
 
 
     minX = min(X);
     maxX = max(X);
     Xbins = [minX:((maxX - minX)/(nBins-1)):maxX];
 
-% 	if length(unique(Y)) <= nBins
-% 		Ybins = unique(Y);
-% 	else
-% 		minY = min(Y);
-% 		maxY = max(Y);
-% 		Ybins = [minY:((maxY - minY)/(nBins-1)):maxY];
-% 	end
-    Ybins = unique(Y);
+    minY = min(Y);
+    maxY = max(Y);
+    Ybins = [minY:((maxY - minY)/(nBins-1)):maxY];
+    
 	Zbins = unique(Z);
 
 	Zix = dsearchn(Zbins, Z);

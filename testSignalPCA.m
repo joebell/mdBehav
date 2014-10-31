@@ -17,16 +17,22 @@ function testSignalPCA()
     
     [sigCorr, noiseCorr] = signalCorrelation(Z, classIX, 20);
     
-    subplot(2,2,1);
+    ffsubplot(2,2,1);
     image(genoCorr,'CDataMapping','scaled');
+    set(gca,'XTick',[],'YTick',[]); colorbar;
+    title('Corr matrix by genotype');
     
-    subplot(2,2,2);
+    ffsubplot(2,2,2);
     image(sigCorr,'CDataMapping','scaled');
+        set(gca,'XTick',[],'YTick',[]); colorbar;
+    title('Signal correlation');
     
-    subplot(2,2,3);
+    ffsubplot(2,2,3);
     image(noiseCorr,'CDataMapping','scaled');
+        set(gca,'XTick',[],'YTick',[]); colorbar;
+    title('Noise correlation');
     
-    subplot(2,2,4);
+    ffsubplot(2,2,4);
     [Vg,Dg] = eig(genoCorr);
     plot(real(cumsum(diag(Dg))./sum(diag(Dg))),'g.-'); hold on;
     [Vs,Ds] = eig(sigCorr);
@@ -77,6 +83,7 @@ function testSignalPCA()
     powerList = unique(grandIX(:,1));
     
     figure;
+    ffsubplot(1,1,1);
     for genoNn = 1:length(genoList)
         genoN = decPIorder(genoNn);
         for powerNn = 1:length(powerList)

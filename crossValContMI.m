@@ -18,8 +18,8 @@ function MI = crossValContMI(X,Y,nBins,classIX,nSplits)
     
     for splitN = 1:nSplits
         % MIs(splitN) = contMutualInfo(Xshuff(:,splitN),Yshuff(:,splitN),nBins);
-        k = 16;
-        MIs(splitN) = kraskovMI(X, Y, k);
+        k = 4;
+        MIs(splitN) = kraskovMI(Xshuff(:,splitN), Yshuff(:,splitN), k);
     end
     
     MI = mean(MIs);

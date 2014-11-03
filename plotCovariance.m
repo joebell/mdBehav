@@ -1,12 +1,18 @@
-function plotCovariance(MI, metricLabels, varargin)
+function plotCovariance(IX, MI, MIshuff, metricLabels, varargin)
 
-     [B, IX] = sort(MI(:,31),'descend');
+     % [B, IX] = sort(MIshuff(:,1),'descend');
      
      for n=1:length(IX)
          orderedLabels{n} = metricLabels{IX(n)};
      end
   
-     ffsubplot(1,1,1);
+     ffsubplot(1,3,1:2);
      image(MI(IX,IX),'CDataMapping','scaled');
      title('Sorted by #1');
      set(gca,'YTick',1:40,'YTickLabel',orderedLabels);
+     colorbar;
+     
+     ffsubplot(1,3,3);
+     image(MIshuff(IX,IX),'CDataMapping','scaled');
+     title('Sorted by #1');
+     colorbar;

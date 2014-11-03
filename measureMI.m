@@ -1,4 +1,4 @@
-function MI = measureMI(grandMetrics, grandIX, nBins)
+function [MI, MIshuff] = measureMI(grandMetrics, grandIX, nBins)
 
     ix = find(isnan(grandMetrics));
     grandMetrics(ix) = 0;
@@ -10,10 +10,16 @@ function MI = measureMI(grandMetrics, grandIX, nBins)
             metricN2
            
             nSplits = 1;
-            oneMI = crossValContMI(grandMetrics(:,metricN1),grandMetrics(:,metricN2),nBins,classIX,nSplits);
-            %oneMI = contMutualInfo(grandMetrics(:,metricN1), grandMetrics(:,metricN2), nBins);
+            oneMI = crossValContMI(grandMetrics(:,metricN1),grandMetrics(:,metricN2),nBins,classIX,nSplits)
+            %oneMI = contMutualInfo(grandMetrics(:,metricN1), grandMetrics(:,metricN2), nBins);            
+            MIshuff(metricN1,metricN2) = oneMI;
+            MIshuff(metricN2,metricN1) = oneMI;
+            k = 8;
+            oneMI = kraskovMI( grandMetrics(:,metricN1), grandMetrics(:,metricN2), k)
             MI(metricN1,metricN2) = oneMI;
             MI(metricN2,metricN1) = oneMI;
             
         end
     end
+    
+    save('MI-shuff.mat','MI','MIshuff');
